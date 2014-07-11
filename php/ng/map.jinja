@@ -90,7 +90,11 @@
     'fpm': {
         'service': {
             'enabled': True,
-            'opts': {},
+            'opts': salt['grains.filter_by']({
+              'Ubuntu': {
+                'reload': False,
+              },
+            }, grain='os', default={'reload': True}),
         },
         'config': {
             'ini': {
