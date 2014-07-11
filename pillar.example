@@ -34,7 +34,8 @@ php:
         pools: /location/of/php-fpm/pool.d
         service: name-of-php5-fpm-service
 
-        # the default content of the php5-fpm main config file
+        # the default content of the php5-fpm main config file;
+        # if you want to merge into the default data, do so here
         defaults:
           global:
             pid: /var/run/php5-fpm.pid
@@ -75,7 +76,7 @@ php:
           # arguments passed through to file.managed
           opts:
             recurse: True
-          # php-fpm conf file contents that will be merged with
+          # php-fpm conf file contents that will override
           # php.ng.lookup.fpm.defaults. See php.ng.ini.defaults for
           # ini-style syntax guidelines.
           settings:

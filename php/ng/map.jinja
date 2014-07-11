@@ -74,13 +74,13 @@
                 'ini': '/etc/php.ini',
                 'pools': '/etc/php-fpm.d',
                 'service': 'php-fpm',
-                'defaults': {
-                    'global': {
-                        'pid': '/var/run/php-fpm/php-fpm.pid',
-                        'error_log': '/var/log/php-fpm/error.log',
-                        'include': '/etc/php-fpm.d/*.conf',
-                    },
-                },
+                'defaults': odict([
+                    ('global', odict([
+                        ('pid', '/var/run/php-fpm.pid'),
+                        ('error_log', '/var/log/php-fpm/error.log'),
+                        ('include', '/etc/php-fpm.d/*.conf'),
+                    ])),
+                ]),
             },
             'cli': {
                 'ini': '/etc/php.ini',
@@ -95,11 +95,11 @@
         'config': {
             'ini': {
               'opts': {},
-              'settings': {},
+              'settings': odict([]),
             },
             'conf': {
               'opts': {},
-              'settings': {},
+              'settings': odict([]),
             },
         },
         'pools': {},

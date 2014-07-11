@@ -5,8 +5,11 @@
 {% set ini_settings = php.ini.defaults %}
 {% do ini_settings.update(php.fpm.config.ini.settings) %}
 
-{% set conf_settings = php.lookup.fpm.defaults %}
-{% do conf_settings.update(php.fpm.config.conf.settings) %}
+{%- if php.fpm.config.conf.settings.length() > 0 -%}
+  {%- conf_settings = php.fpm.config.conf.settings -%}
+{%- else -%}
+  {%- conf_settings = php.lookup.fpm.defaults -%}
+{%- endif -%}
 
 php_fpm_ini_config:
   {{ php_ini(php.lookup.fpm.ini, php.fpm.config.ini.opts, ini_settings) }}
